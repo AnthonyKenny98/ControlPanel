@@ -45,11 +45,43 @@ button_t buttons[BUTTON_ROWS][BUTTON_COLS] = {{
 #define KEY_RIGHT_ALT 4
 #define KEY_RIGHT_CMD 8
 
+
 // Define Regular Keys
+#define KEY_A 4
+#define KEY_B 5
+#define KEY_C 6
+#define KEY_D 7
+#define KEY_E 8
+#define KEY_F 9
+#define KEY_G 10
+#define KEY_H 11
+#define KEY_I 12
+#define KEY_J 13
+#define KEY_K 14
+#define KEY_L 15
+#define KEY_M 16
+#define KEY_N 17
+#define KEY_O 18
+#define KEY_P 19
+#define KEY_Q 20
+#define KEY_R 21
+#define KEY_S 22
+#define KEY_T 23
+#define KEY_U 24
+#define KEY_V 25
+#define KEY_W 26
+#define KEY_X 27
+#define KEY_Y 28
+#define KEY_Z 29
+#define KEY_ESC 41
+#define KEY_SPACEBAR 44
+#define KEY_1 30
+#define KEY_F3 60
 #define KEY_VOL_MUTE 127
 #define KEY_VOL_DOWN 129
 #define KEY_VOL_UP 128
 #define KEY_PAUSE 126
+#define KEY_POWER 0x66
 
 // Define Input Pins for switches
 #define SWITCH_GREEN 9
@@ -58,6 +90,28 @@ button_t buttons[BUTTON_ROWS][BUTTON_COLS] = {{
 // Define default signal states
 int state = 1;
 int funct = 1;
+
+// Define Functions
+
+// GENERIC MAC FUNCTIONS
+funct_t lock = {.mod = KEY_LEFT_CMD + KEY_LEFT_CONTROL, .key=KEY_Q};
+funct_t force_quit = {.mod = KEY_LEFT_CMD + KEY_LEFT_ALT, .key=KEY_ESC};
+funct_t spotlight_siri = {.mod = KEY_LEFT_CMD, .key=KEY_SPACEBAR};
+
+
+funct_t launch_chrome = {.mod = KEY_LEFT_SHIFT + KEY_LEFT_CONTROL + KEY_LEFT_ALT + KEY_LEFT_CMD, .key=KEY_A};
+funct_t launch_terminal = {.mod = KEY_LEFT_CMD + KEY_LEFT_ALT, .key=KEY_T};
+funct_t shut_down = {.mod = KEY_LEFT_CONTROL + KEY_LEFT_ALT + KEY_LEFT_CMD, .key=KEY_POWER};
+
+// MICROSOFT TEAMS FUNCTIONS
+// WINDOWS
+funct_t teams_toggle_mute = {.mod = KEY_LEFT_CONTROL + KEY_LEFT_SHIFT, .key = KEY_M};
+funct_t teams_toggle_video = {.mod = KEY_LEFT_CONTROL + KEY_LEFT_SHIFT, .key = KEY_O};
+funct_t teams_sharing = {.mod = KEY_LEFT_CONTROL + KEY_LEFT_SHIFT, .key = KEY_SPACEBAR};
+funct_t teams_toggle_blur = {.mod = KEY_LEFT_CONTROL + KEY_LEFT_SHIFT, .key = KEY_P};
+funct_t teams_leave_meeting = { .mod = KEY_LEFT_CONTROL + KEY_LEFT_SHIFT, .key = KEY_B};
+
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -73,20 +127,20 @@ void setup() {
   buttons[1][2].pin = 3;
 
   // Define FUNCT1 for buttons
-  buttons[0][0].functs[0] = {.mod=0, .key=4 };
-  buttons[0][1].functs[0] = {.mod=0, .key=5 };
-  buttons[0][2].functs[0] = {.mod=0, .key=6 };
-  buttons[1][0].functs[0] = {.mod=0, .key=7 };
-  buttons[1][1].functs[0] = {.mod=0, .key=8 };
-  buttons[1][2].functs[0] = {.mod=0, .key=9 };
+  buttons[0][0].functs[0] = lock;
+  buttons[0][1].functs[0] = force_quit;
+  buttons[0][2].functs[0] = spotlight_siri;
+  buttons[1][0].functs[0] = launch_chrome;
+  buttons[1][1].functs[0] = shut_down;
+  buttons[1][2].functs[0] = launch_terminal;
 
   // Define FUNCT2 for buttons
-  buttons[0][0].functs[1] = {.mod=0, .key=10 };
-  buttons[0][1].functs[1] = {.mod=0, .key=11 };
+  buttons[0][0].functs[1] = teams_sharing;
+  buttons[0][1].functs[1] = teams_leave_meeting;
   buttons[0][2].functs[1] = {.mod=0, .key=12 };
-  buttons[1][0].functs[1] = {.mod=0, .key=13 };
-  buttons[1][1].functs[1] = {.mod=0, .key=14 };
-  buttons[1][2].functs[1] = {.mod=0, .key=15 };
+  buttons[1][0].functs[1] = teams_toggle_mute;
+  buttons[1][1].functs[1] = teams_toggle_video;
+  buttons[1][2].functs[1] = teams_toggle_blur;
 
 
   // Set Pin Modes
