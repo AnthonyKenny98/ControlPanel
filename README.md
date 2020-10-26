@@ -1,7 +1,7 @@
 # Control Panel
 > Arduino based USB hotkey panel
 
-![Control Panel](docs/image.jpg)
+![Control Panel](docs/box.png)
 
 ## Uploading code 
 
