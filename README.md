@@ -1,7 +1,7 @@
 # Control Panel
 > Arduino based USB hotkey panel
 
-![Control Panel](docs/image.HEIC)
+![Control Panel](docs/image.jpg)
 
 ## Uploading code 
 
